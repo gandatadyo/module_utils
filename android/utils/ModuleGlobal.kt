@@ -189,4 +189,16 @@ class ModuleGlobal {
         }
 
     }
+    fun getVersionApps(context:Context):String{
+        val info = context.packageManager.getPackageInfo(context.packageName, PackageManager.GET_ACTIVITIES)
+        return info.versionName
+    }
+    fun openLinktoBrowser(context:Context,url:String){
+        val uris = Uri.parse(url)
+        val intents = Intent(Intent.ACTION_VIEW, uris)
+        val b = Bundle()
+        b.putBoolean("new_window", true)
+        intents.putExtras(b)
+        context.startActivity(intents)
+    }
 }
